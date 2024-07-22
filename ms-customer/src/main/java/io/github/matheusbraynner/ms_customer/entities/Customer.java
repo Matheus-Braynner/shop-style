@@ -19,7 +19,7 @@ public class Customer {
     @Id
     private Long id;
 
-    @Column(name = "cpf")
+    @Column(name = "cpf", unique = true)
     private String cpf;
 
     @Column(name = "first_name")
@@ -34,7 +34,7 @@ public class Customer {
     @Column(name = "birthdate")
     private LocalDate birthDate;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
