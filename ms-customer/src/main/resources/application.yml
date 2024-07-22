@@ -1,0 +1,16 @@
+spring:
+    application:
+        name: ms-customer
+    jpa:
+        show-sql: true
+        generate-ddl: true
+        hibernate:
+            ddl-auto: true
+        database: POSTGRESQL
+    datasource:
+        url: jdbc:postgresql://localhost:5432/db_shop_style
+        username: postgres
+        password: 12345678
+    mvc:
+        pathmatch:
+            matching-strategy: ant-path-matcher
