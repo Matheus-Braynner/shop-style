@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
        customerFound.setFirstName(customerFormsDTO.getFirstName());
        customerFound.setLastName(customerFormsDTO.getLastName());
        customerFound.setCpf(customerFormsDTO.getCpf());
-       customerFound.setBirthDate(customerFormsDTO.getBirthDate());
+       customerFound.setBirthdate(customerFormsDTO.getBirthdate());
        customerFound.setSex(customerFormsDTO.getSex());
        customerFound.setEmail(customerFormsDTO.getEmail());
        customerFound.setPassword(customerFormsDTO.getPassword());
@@ -53,13 +53,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO updateCustomerPassword(Long id, ChangePasswordFormsDTO changePasswordFormsDTO) {
+    public void updateCustomerPassword(Long id, ChangePasswordFormsDTO changePasswordFormsDTO) {
         Customer customerFound = findCustomerToUpdate(id);
 
         customerFound.setPassword(changePasswordFormsDTO.getPassword());
-        Customer customerUpdated = customerRepository.save(customerFound);
-
-        return customerMapper.toCustomerDTO(customerUpdated);
+        customerRepository.save(customerFound);
     }
 
     private Customer findCustomerToUpdate(Long id) {

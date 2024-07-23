@@ -25,7 +25,7 @@ public class CustomerFormsDTO implements Serializable {
 
     private Sex sex;
 
-    private LocalDate birthDate;
+    private LocalDate birthdate;
 
     private String email;
 

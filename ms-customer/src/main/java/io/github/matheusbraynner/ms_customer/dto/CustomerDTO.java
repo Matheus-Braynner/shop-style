@@ -2,9 +2,7 @@ package io.github.matheusbraynner.ms_customer.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.github.matheusbraynner.ms_customer.entities.enums.Sex;
 import lombok.*;
 
@@ -30,7 +28,7 @@ public class CustomerDTO implements Serializable {
 
     private Sex sex;
 
-    private LocalDate birthDate;
+    private LocalDate birthdate;
 
     private String email;
 

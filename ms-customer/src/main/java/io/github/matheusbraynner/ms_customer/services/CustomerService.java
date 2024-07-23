@@ -12,5 +12,5 @@ public interface CustomerService {
 
     CustomerDTO updateCustomer(Long id, CustomerFormsDTO customerFormsDTO);
 
-    CustomerDTO updateCustomerPassword(Long id, ChangePasswordFormsDTO changePasswordFormsDTO);
+    void updateCustomerPassword(Long id, ChangePasswordFormsDTO changePasswordFormsDTO);
 }

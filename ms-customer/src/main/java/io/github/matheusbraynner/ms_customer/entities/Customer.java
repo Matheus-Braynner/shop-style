@@ -32,7 +32,7 @@ public class Customer {
     private Sex sex;
 
     @Column(name = "birthdate")
-    private LocalDate birthDate;
+    private LocalDate birthdate;
 
     @Column(name = "email", unique = true)
     private String email;
