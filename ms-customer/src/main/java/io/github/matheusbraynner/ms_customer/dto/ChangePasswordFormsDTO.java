@@ -1,8 +1,8 @@
 package io.github.matheusbraynner.ms_customer.dto;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,6 +18,6 @@ public class ChangePasswordFormsDTO implements Serializable {
     private static final long serialVersionUID = 9189063159976268997L;
 
     @NotNull
-    @Min(value = 6)
+    @Length(min = 6, message = "must be greater than or equal to 6")
     private String password;
 }

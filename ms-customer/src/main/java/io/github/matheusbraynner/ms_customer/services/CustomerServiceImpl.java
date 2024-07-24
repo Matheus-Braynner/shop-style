@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO findCustomerById(Long id) {
         Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Customer with " + id + " not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer with id: " + id + " was not found."));
 
         return customerMapper.toCustomerDTO(customer);
     }
@@ -62,6 +62,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     private Customer findCustomerToUpdate(Long id) {
         return customerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Customer with " + id + " not found."));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer with id: " + id + " was not found."));
     }
 }

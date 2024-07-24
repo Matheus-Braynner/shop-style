@@ -3,9 +3,9 @@ package io.github.matheusbraynner.ms_customer.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.github.matheusbraynner.ms_customer.entities.enums.Sex;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.io.Serial;
@@ -27,11 +27,11 @@ public class CustomerFormsDTO implements Serializable {
     private String cpf;
 
     @NotNull
-    @Min(value = 3)
+    @Length(min = 3, message = "must be greater than or equal to 3")
     private String firstName;
 
     @NotNull
-    @Min(value = 3)
+    @Length(min = 3, message = "must be greater than or equal to 3")
     private String lastName;
 
     @NotNull
@@ -46,7 +46,7 @@ public class CustomerFormsDTO implements Serializable {
     private String email;
 
     @NotNull
-    @Min(value = 6)
+    @Length(min = 6, message = "must be greater than or equal to 6")
     private String password;
 
     @NotNull
