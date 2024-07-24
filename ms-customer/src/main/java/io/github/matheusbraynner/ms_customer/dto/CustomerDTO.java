@@ -1,5 +1,6 @@
 package io.github.matheusbraynner.ms_customer.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -28,6 +29,7 @@ public class CustomerDTO implements Serializable {
 
     private Sex sex;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate birthdate;
 
     private String email;
