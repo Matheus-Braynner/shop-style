@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Getter
@@ -42,4 +43,7 @@ public class Customer {
 
     @Column(name = "active")
     private Boolean active;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Address> addresses;
 }
