@@ -1,6 +1,8 @@
 package io.github.matheusbraynner.ms_customer.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.github.matheusbraynner.ms_customer.entities.enums.Sex;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -17,6 +19,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
 public class CustomerFormsDTO implements Serializable {
 
     @Serial

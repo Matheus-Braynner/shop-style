@@ -1,15 +1,13 @@
 package io.github.matheusbraynner.ms_customer.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import io.github.matheusbraynner.ms_customer.entities.enums.Sex;
+import io.github.matheusbraynner.ms_customer.entities.enums.States;
 import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Data
 @Getter
@@ -18,23 +16,26 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
-public class CustomerDTO implements Serializable {
+public class AddressDTO implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 6427951113210246897L;
+    private static final long serialVersionUID = 5683249760773571403L;
 
     private Long id;
 
-    private String firstName;
+    private States state;
 
-    private String lastName;
+    private String city;
 
-    private Sex sex;
+    private String district;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate birthdate;
+    private String street;
 
-    private String email;
+    private String number;
 
-    private Boolean active;
+    private String cep;
+
+    private String complement;
+
+    private Long customerId;
 }

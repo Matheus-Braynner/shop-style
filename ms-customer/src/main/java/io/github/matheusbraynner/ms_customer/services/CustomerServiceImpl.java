@@ -39,15 +39,8 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO updateCustomer(Long id, CustomerFormsDTO customerFormsDTO) {
        Customer customerFound = findCustomerToUpdate(id);
 
-       customerFound.setFirstName(customerFormsDTO.getFirstName());
-       customerFound.setLastName(customerFormsDTO.getLastName());
-       customerFound.setCpf(customerFormsDTO.getCpf());
-       customerFound.setBirthdate(customerFormsDTO.getBirthdate());
-       customerFound.setSex(customerFormsDTO.getSex());
-       customerFound.setEmail(customerFormsDTO.getEmail());
-       customerFound.setPassword(customerFormsDTO.getPassword());
-       customerFound.setActive(customerFormsDTO.getActive());
-       Customer customerUpdated = customerRepository.save(customerFound);
+        updateCustomer(customerFormsDTO, customerFound);
+        Customer customerUpdated = customerRepository.save(customerFound);
 
         return customerMapper.toCustomerDTO(customerUpdated);
     }
@@ -58,6 +51,18 @@ public class CustomerServiceImpl implements CustomerService {
 
         customerFound.setPassword(changePasswordFormsDTO.getPassword());
         customerRepository.save(customerFound);
+    }
+
+
+    private static void updateCustomer(CustomerFormsDTO customerFormsDTO, Customer customerFound) {
+        customerFound.setFirstName(customerFormsDTO.getFirstName());
+        customerFound.setLastName(customerFormsDTO.getLastName());
+        customerFound.setCpf(customerFormsDTO.getCpf());
+        customerFound.setBirthdate(customerFormsDTO.getBirthdate());
+        customerFound.setSex(customerFormsDTO.getSex());
+        customerFound.setEmail(customerFormsDTO.getEmail());
+        customerFound.setPassword(customerFormsDTO.getPassword());
+        customerFound.setActive(customerFormsDTO.getActive());
     }
 
     private Customer findCustomerToUpdate(Long id) {

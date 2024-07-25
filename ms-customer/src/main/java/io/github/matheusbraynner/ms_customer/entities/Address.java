@@ -39,5 +39,5 @@ public class Address {
     private String complement;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Customer customer_id;
+    private Customer customer;
 }
