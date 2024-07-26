@@ -35,7 +35,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public AddressDTO updateAddress(Long id, AddressFormsDTO addressFormsDTO) {
-        Address address = findAddressById(id);
+        Address address = findAddress(id);
         Customer findCustomerFromForms = findCustomerById(addressFormsDTO.getCustomerId());
 
         updateAddress(addressFormsDTO, address, findCustomerFromForms);
@@ -45,10 +45,17 @@ public class AddressServiceImpl implements AddressService {
         return addressMapper.toAddressDTO(addressSaved);
     }
 
+    @Override
+    public AddressDTO findAddressById(Long id) {
+        Address address = findAddress(id);
+
+        return addressMapper.toAddressDTO(address);
+    }
+
 
     @Override
     public void deleteAddress(Long id) {
-        Address address = findAddressById(id);
+        Address address = findAddress(id);
 
         addressRepository.delete(address);
     }
@@ -64,7 +71,8 @@ public class AddressServiceImpl implements AddressService {
         address.setCustomer(findCustomerFromForms);
     }
 
-    private Address findAddressById(Long id) {
+
+    private Address findAddress(Long id) {
         return addressRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Address with id: " + id + " was not found"));
     }
