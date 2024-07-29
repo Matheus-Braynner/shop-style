@@ -2,6 +2,7 @@ package io.github.matheusbraynner.ms_customer.controllers.handler;
 
 import io.github.matheusbraynner.ms_customer.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.postgresql.util.PSQLException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -32,6 +33,15 @@ public class ControllerExceptionHandler {
     public ResponseEntity<StandardError> resourceNotFoundException(ResourceNotFoundException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
         String message = "Resource not found";
+        StandardError err = new StandardError(Instant.now(), status.value(), e.getMessage(), message, request.getRequestURI());
+
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(PSQLException.class)
+    public ResponseEntity<StandardError> psqlException(PSQLException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        String message = "Database error";
         StandardError err = new StandardError(Instant.now(), status.value(), e.getMessage(), message, request.getRequestURI());
 
         return ResponseEntity.status(status).body(err);

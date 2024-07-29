@@ -8,6 +8,7 @@ import io.github.matheusbraynner.ms_customer.mappers.CustomerMapper;
 import io.github.matheusbraynner.ms_customer.repositories.CustomerRepository;
 import io.github.matheusbraynner.ms_customer.services.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,10 +19,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerMapper customerMapper;
 
+    private final BCryptPasswordEncoder passwordEncoder;
+
     @Override
     public CustomerDTO insertCustomer(CustomerFormsDTO customerFormsDTO) {
 
         Customer customer = customerMapper.toCustomer(customerFormsDTO);
+        passwordEncoder(customer);
         Customer customerSaved = customerRepository.save(customer);
 
         return customerMapper.toCustomerDTO(customerSaved);
@@ -40,6 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
        Customer customerFound = findCustomerToUpdate(id);
 
         updateCustomer(customerFormsDTO, customerFound);
+        passwordEncoder(customerFound);
         Customer customerUpdated = customerRepository.save(customerFound);
 
         return customerMapper.toCustomerDTO(customerUpdated);
@@ -50,7 +55,12 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customerFound = findCustomerToUpdate(id);
 
         customerFound.setPassword(changePasswordFormsDTO.getPassword());
+        passwordEncoder(customerFound);
         customerRepository.save(customerFound);
+    }
+
+    private void passwordEncoder(Customer customer) {
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
     }
 
 
