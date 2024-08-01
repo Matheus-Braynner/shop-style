@@ -3,20 +3,15 @@ package io.github.matheusbraynner.ms_customer.services;
 import io.github.matheusbraynner.ms_customer.dto.ChangePasswordFormsDTO;
 import io.github.matheusbraynner.ms_customer.dto.CustomerDTO;
 import io.github.matheusbraynner.ms_customer.dto.CustomerFormsDTO;
-import io.github.matheusbraynner.ms_customer.entities.Address;
+import io.github.matheusbraynner.ms_customer.dto.LoginFormsDTO;
 import io.github.matheusbraynner.ms_customer.entities.Customer;
 import io.github.matheusbraynner.ms_customer.mappers.CustomerMapper;
-import io.github.matheusbraynner.ms_customer.repositories.AddressRepository;
 import io.github.matheusbraynner.ms_customer.repositories.CustomerRepository;
+import io.github.matheusbraynner.ms_customer.services.exceptions.InvalidLoginException;
 import io.github.matheusbraynner.ms_customer.services.exceptions.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +20,6 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
 
     private final CustomerMapper customerMapper;
-
-    private final AddressRepository addressRepository;
 
     private final BCryptPasswordEncoder passwordEncoder;
 
@@ -66,6 +59,18 @@ public class CustomerServiceImpl implements CustomerService {
         customerFound.setPassword(changePasswordFormsDTO.getPassword());
         passwordEncoder(customerFound);
         customerRepository.save(customerFound);
+    }
+
+    @Override
+    public CustomerDTO login(LoginFormsDTO loginFormsDTO) {
+        Customer customer = customerRepository.findByEmail(loginFormsDTO.getEmail())
+                .orElseThrow(()-> new InvalidLoginException("Error to login, please check if the fields are correctly"));
+
+        if (!passwordEncoder.matches(loginFormsDTO.getPassword(), customer.getPassword())) {
+            throw new InvalidLoginException("Error to login, please check if the fields are correctly");
+        }
+
+        return customerMapper.toCustomerDTO(customer);
     }
 
     private void passwordEncoder(Customer customer) {

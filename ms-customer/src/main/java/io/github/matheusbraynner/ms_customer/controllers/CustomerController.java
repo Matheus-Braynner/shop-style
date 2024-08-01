@@ -37,6 +37,4 @@ public class CustomerController {
         customerService.updateCustomerPassword(id, changePasswordFormsDTO);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
-
 }
