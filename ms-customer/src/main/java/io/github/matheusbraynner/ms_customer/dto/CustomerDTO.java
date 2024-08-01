@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.github.matheusbraynner.ms_customer.entities.Address;
 import io.github.matheusbraynner.ms_customer.entities.enums.Sex;
 import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Getter
@@ -37,4 +39,6 @@ public class CustomerDTO implements Serializable {
     private String email;
 
     private Boolean active;
+
+    private List<Address> addresses;
 }

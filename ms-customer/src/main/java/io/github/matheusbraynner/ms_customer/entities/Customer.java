@@ -44,6 +44,6 @@ public class Customer {
     @Column(name = "active")
     private Boolean active;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Address> addresses;
 }

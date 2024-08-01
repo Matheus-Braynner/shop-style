@@ -1,5 +1,6 @@
 package io.github.matheusbraynner.ms_customer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.matheusbraynner.ms_customer.entities.enums.States;
 import jakarta.persistence.*;
 import lombok.*;
@@ -39,5 +40,6 @@ public class Address {
     private String complement;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Customer customer;
 }
