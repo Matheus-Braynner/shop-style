@@ -1,4 +1,4 @@
-package io.github.matheusbraynner.ms_catalog;
+package io.github.matheusbraynner.mscatalog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

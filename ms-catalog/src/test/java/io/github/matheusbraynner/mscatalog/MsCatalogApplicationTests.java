@@ -1,4 +1,4 @@
-package io.github.matheusbraynner.ms_catalog;
+package io.github.matheusbraynner.mscatalog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
