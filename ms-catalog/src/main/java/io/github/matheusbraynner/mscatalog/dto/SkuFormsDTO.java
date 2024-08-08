@@ -2,6 +2,8 @@ package io.github.matheusbraynner.mscatalog.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.github.matheusbraynner.mscatalog.entities.Product;
+import io.github.matheusbraynner.mscatalog.entities.enums.Size;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @Getter
@@ -17,20 +19,26 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
-public class ProductFormsDTO implements Serializable {
+public class SkuFormsDTO {
 
     @NotNull
-    private String name;
+    private BigDecimal price;
 
     @NotNull
-    private String description;
+    private Integer quantity;
 
     @NotNull
-    private String brand;
+    private String color;
 
     @NotNull
-    private String material;
+    private Size size;
 
     @NotNull
-    private Boolean active;
+    private Integer height;
+
+    @NotNull
+    private Integer width;
+
+    @NotNull
+    private Product product;
 }

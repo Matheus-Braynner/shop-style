@@ -11,13 +11,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
-public class LoginFormsDTO {
+public class LoginFormsDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 6312606030688437844L;
 
     @NotNull
     @Email
