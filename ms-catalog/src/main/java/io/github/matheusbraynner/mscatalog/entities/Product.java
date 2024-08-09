@@ -1,19 +1,15 @@
 package io.github.matheusbraynner.mscatalog.entities;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -42,8 +38,4 @@ public class Product {
 
     @Column(name = "active")
     private Boolean active;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Sku> skus;
-
 }
