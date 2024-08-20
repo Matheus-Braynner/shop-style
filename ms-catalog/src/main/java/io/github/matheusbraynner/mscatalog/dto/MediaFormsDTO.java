@@ -9,32 +9,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
-public class ProductFormsDTO implements Serializable {
+public class MediaFormsDTO {
 
     @NotNull
-    private String name;
-
-    @NotNull
-    private String description;
-
-    @NotNull
-    private String brand;
-
-    @NotNull
-    private String material;
-
-    @NotNull
-    private Boolean active;
-
-    @NotNull
-    private Long category;
-
+    private String imageUrl;
 }

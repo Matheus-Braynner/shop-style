@@ -44,5 +44,5 @@ public class SkuDTO implements Serializable {
 
     private Product product;
 
-    private List<Media> medias;
+    private List<MediaDTO> medias;
 }

@@ -1,5 +1,6 @@
 package io.github.matheusbraynner.mscatalog.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,4 +42,8 @@ public class Category {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private List<Category> childrenCategories;
+
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore
+    private List<Product> products;
 }

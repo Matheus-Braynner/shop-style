@@ -45,5 +45,5 @@ public class SkuFormsDTO {
     private Product product;
 
     @NotNull
-    private List<Media> medias;
+    private List<MediaFormsDTO> medias;
 }
