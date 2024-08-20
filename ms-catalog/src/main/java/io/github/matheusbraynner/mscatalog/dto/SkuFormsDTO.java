@@ -2,6 +2,7 @@ package io.github.matheusbraynner.mscatalog.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import io.github.matheusbraynner.mscatalog.entities.Media;
 import io.github.matheusbraynner.mscatalog.entities.Product;
 import io.github.matheusbraynner.mscatalog.entities.enums.Size;
 import jakarta.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Getter
@@ -41,4 +43,7 @@ public class SkuFormsDTO {
 
     @NotNull
     private Product product;
+
+    @NotNull
+    private List<Media> medias;
 }

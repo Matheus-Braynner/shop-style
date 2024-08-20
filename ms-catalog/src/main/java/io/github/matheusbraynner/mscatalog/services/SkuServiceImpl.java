@@ -2,9 +2,11 @@ package io.github.matheusbraynner.mscatalog.services;
 
 import io.github.matheusbraynner.mscatalog.dto.SkuDTO;
 import io.github.matheusbraynner.mscatalog.dto.SkuFormsDTO;
+import io.github.matheusbraynner.mscatalog.entities.Media;
 import io.github.matheusbraynner.mscatalog.entities.Product;
 import io.github.matheusbraynner.mscatalog.entities.Sku;
 import io.github.matheusbraynner.mscatalog.mappers.SkuMapper;
+import io.github.matheusbraynner.mscatalog.repositories.MediaRepository;
 import io.github.matheusbraynner.mscatalog.repositories.ProductRepository;
 import io.github.matheusbraynner.mscatalog.repositories.SkuRepository;
 import io.github.matheusbraynner.mscatalog.services.exceptions.ResourceNotFoundException;
@@ -21,12 +23,17 @@ public class SkuServiceImpl implements SkuService {
 
     private final ProductRepository productRepository;
 
+    private final MediaRepository mediaRepository;
+
     @Override
     public SkuDTO insertSku(SkuFormsDTO skuFormsDTO) {
         Product product = findProduct(skuFormsDTO);
 
         Sku sku = skuMapper.toSku(skuFormsDTO);
         sku.setProduct(product);
+
+        saveMedias(sku);
+
         Sku skuSaved = skuRepository.save(sku);
 
         return skuMapper.toSkuDTO(skuSaved);
@@ -41,6 +48,8 @@ public class SkuServiceImpl implements SkuService {
         Product product = findProduct(skuFormsDTO);
 
         updatedSku(skuFormsDTO, sku, product);
+        saveMedias(sku);
+
         Sku skuSaved = skuRepository.save(sku);
 
         return skuMapper.toSkuDTO(skuSaved);
@@ -68,5 +77,12 @@ public class SkuServiceImpl implements SkuService {
         sku.setHeight(skuFormsDTO.getHeight());
         sku.setWidth(skuFormsDTO.getWidth());
         sku.setProduct(product);
+        sku.setMedias(skuFormsDTO.getMedias());
+    }
+
+    private void saveMedias(Sku sku) {
+        for (Media m : sku.getMedias()) {
+            mediaRepository.save(m);
+        }
     }
 }
